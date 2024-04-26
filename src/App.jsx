@@ -1,54 +1,38 @@
-import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import Layout from "./components/Layout/Layout";
+import Loader from "./components/Loader/Loader";
 import "./App.css";
-import SearchBox from "./components/SearchBox/SearchBox";
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
+
+const HomePage = lazy(() => import("./pages/HomePage/HomePage"));
+const MoviesPage = lazy(() => import("./pages/MoviesPage/MoviesPage"));
+const MovieDetailsPage = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieDetailsPage")
+);
+const MovieCast = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieCast/MovieCast")
+);
+const MovieReviews = lazy(() =>
+  import("./pages/MovieDetailsPage/MovieReviews/MovieReviews")
+);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage/NotFoundPage"));
 
 function App() {
-  const [filter, setFilter] = useState("");
-  const [contacts, setContacts] = useState([
-    { id: "id-1", name: "Rick Grimes", number: "459-12-56" },
-    { id: "id-2", name: "Deacon St. John", number: "443-89-12" },
-    { id: "id-3", name: "Daryl Dixon", number: "645-17-79" },
-    { id: "id-4", name: "Mark Copeland", number: "227-91-26" },
-  ]);
-
-  useEffect(() => {
-    const savedContacts = JSON.parse(
-      localStorage.getItem("contacts")
-    );
-    if (savedContacts) {
-      setContacts(savedContacts);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-
-  const addContact = (newContact) => {
-    setContacts((prevContacts) => [...prevContacts, newContact]);
-  };
-
-  const deleteContact = (contactId) => {
-    setContacts((prevContacts) =>
-      prevContacts.filter((contact) => contact.id !== contactId)
-    );
-  };
-
-  const visibleContacts = contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
-
   return (
-    <>
-      <h1>Phonebook</h1>
-      <ContactForm onAdd={addContact} />
-      <SearchBox value={filter} onFilter={setFilter} />
-      <ContactList contacts={visibleContacts} onDelete={deleteContact} />
-    </>
+    <Suspense fallback={<Loader />}>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Layout>
+    </Suspense>
   );
 }
 
 export default App;
-

@@ -1,0 +1,61 @@
+.wrapper{
+display: flex;
+flex-direction: row;
+justify-content: center;
+gap: 24px;
+padding: 12px;
+}
+
+.posterwrap{
+  
+}
+.textwrap{
+    width: 500px;
+  }
+
+.title{
+    margin-bottom: 20px;
+}
+.score{
+    margin-bottom: 12px;
+}
+.overviewtitle{
+    margin-bottom: 12px;
+}
+.overviewtext{
+    margin-bottom: 12px;
+}
+
+.genretitle{
+    margin-bottom: 12px;
+}
+
+.genretext{
+    margin-bottom: 12px;
+}
+
+
+
+.additionalwrap{
+
+    padding-top: 24px;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.additionaltitle{
+    margin-bottom: 12px;
+}
+.addtext{
+    margin-bottom: 12px;
+}
+.addwrap{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start; 
+}

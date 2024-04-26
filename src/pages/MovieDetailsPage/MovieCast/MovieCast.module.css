@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.name {
+  margin: 12px;
+}
+text {
+  margin: 12px;
+}

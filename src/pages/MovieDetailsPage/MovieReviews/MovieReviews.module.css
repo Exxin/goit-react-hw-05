@@ -1,0 +1,15 @@
+.list{
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.title{
+    margin-bottom: 12px;
+}
+.text{
+    margin-bottom: 12px;
+    text-align: justify;
+}

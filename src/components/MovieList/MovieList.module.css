@@ -1,0 +1,25 @@
+.wrapper{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+
+    width: 400px;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:flex-start;
+    padding: 12px;
+}
+.listitem{
+color: #3e5a74;
+margin-bottom: 12px;
+text-decoration: none;
+}
+
+.listitem:hover,
+.listitem:focus{
+    color: rgb(244, 249, 94);
+}
